@@ -1,7 +1,7 @@
 ﻿# Secure Multiplayer Game Simulator
 
 **Mata Kuliah:** Kriptografi (C)  
-**Kelompok:** Kelompok 4
+**Kelompok:** Kelompok 11
 
 | Nama | NRP |
 |---|---|
