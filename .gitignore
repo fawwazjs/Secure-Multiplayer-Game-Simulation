@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environment
+.venv/
+venv/
+legacy-venv/
+
+# Rahasia dan konfigurasi lokal (jangan pernah di-push)
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+secrets.json
+
+# Node / browser tooling (opsional)
+node_modules/
+playwright-report/
+test-results/
+
+# Build sementara laporan
+docs/_report_print.html
+docs/_report_print_*.html
+docs/screenshots/report-preview/
+
+# Arsip pengumpulan
+*.zip
+
+# Berkas runtime / sementara
+*.log
+*.db
+*.sqlite
+*.sqlite3
+*.bak
+*.tmp
+*.swp
+*~
+~$*
+.cache/
+
+# Sistem operasi dan editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/

@@ -1,0 +1,113 @@
+HASIL PENGUJIAN - SECURE MULTIPLAYER GAME SIMULATOR
+Kelompok 4 - Kriptografi (C)
+Tanggal: 2026-10-27 16:24:01
+
+=== 1. UNIT TEST (python -m unittest discover -s tests -v) ===
+
+[stderr]
+test_arena_reset (test_arena.ApiTests.test_arena_reset) ... ok
+test_arena_state (test_arena.ApiTests.test_arena_state) ... ok
+test_claim_damage_is_ignored_by_server (test_arena.ApiTests.test_claim_damage_is_ignored_by_server) ... ok
+test_end_to_end_attack (test_arena.ApiTests.test_end_to_end_attack) ... ok
+test_homepage_contains_arena_and_textbook (test_arena.ApiTests.test_homepage_contains_arena_and_textbook) ... ok
+test_invalid_action_and_body (test_arena.ApiTests.test_invalid_action_and_body) ... ok
+test_invalid_ciphertext_returns_400_and_keeps_hp (test_arena.ApiTests.test_invalid_ciphertext_returns_400_and_keeps_hp) ... ok
+test_textbook_endpoint (test_arena.ApiTests.test_textbook_endpoint) ... ok
+test_unknown_endpoint_is_404 (test_arena.ApiTests.test_unknown_endpoint_is_404) ... ok
+test_attack_mapping_and_retaliation (test_arena.ArenaTests.test_attack_mapping_and_retaliation) ... ok
+test_cannot_act_after_game_over (test_arena.ArenaTests.test_cannot_act_after_game_over) ... ok
+test_claimed_damage_is_ignored (test_arena.ArenaTests.test_claimed_damage_is_ignored) ... ok
+test_defend_blocks_and_heals (test_arena.ArenaTests.test_defend_blocks_and_heals) ... ok
+test_initial_state (test_arena.ArenaTests.test_initial_state) ... ok
+test_invalid_action_id_and_mode (test_arena.ArenaTests.test_invalid_action_id_and_mode) ... ok
+test_invalid_ciphertext_is_rejected_without_hp_change (test_arena.ArenaTests.test_invalid_ciphertext_is_rejected_without_hp_change) ... ok
+test_monster_hp_never_negative_and_victory (test_arena.ArenaTests.test_monster_hp_never_negative_and_victory) ... ok
+test_random_k_roundtrip (test_arena.ArenaTests.test_random_k_roundtrip) ... ok
+test_roundtrip_for_all_action_codes (test_arena.ArenaTests.test_roundtrip_for_all_action_codes) ... ok
+test_skill_mapping_and_retaliation (test_arena.ArenaTests.test_skill_mapping_and_retaliation) ... ok
+test_diffie_hellman_values (test_arena.TextbookTests.test_diffie_hellman_values) ... ok
+test_elgamal_values (test_arena.TextbookTests.test_elgamal_values) ... ok
+test_inverse_trace (test_arena.TextbookTests.test_inverse_trace) ... ok
+test_textbook_elgamal_other_inputs (test_arena.TextbookTests.test_textbook_elgamal_other_inputs) ... ok
+test_textbook_rejects_invalid_inputs (test_arena.TextbookTests.test_textbook_rejects_invalid_inputs) ... ok
+test_public_values_are_in_group (test_crypto.DiffieHellmanTests.test_public_values_are_in_group) ... ok
+test_shared_key_equal_100_random_trials (test_crypto.DiffieHellmanTests.test_shared_key_equal_100_random_trials)
+K pemain harus sama dengan K server pada 100 percobaan acak. ... ok
+test_shared_key_equal_safe_mode (test_crypto.DiffieHellmanTests.test_shared_key_equal_safe_mode) ... ok
+test_encrypt_decrypt_100_messages_both_modes (test_crypto.ElGamalTests.test_encrypt_decrypt_100_messages_both_modes)
+100 pesan acak harus kembali utuh pada Mode Demo dan Mode Aman. ... ok
+test_full_dependency_chain (test_crypto.ElGamalTests.test_full_dependency_chain)
+m -> m' -> ElGamal -> m' -> m harus konsisten. ... ok
+test_k_is_coprime_with_p_minus_1 (test_crypto.ElGamalTests.test_k_is_coprime_with_p_minus_1) ... ok
+test_mask_and_unmask (test_crypto.ElGamalTests.test_mask_and_unmask) ... ok
+test_tamper_changes_recovered_message (test_crypto.ElGamalTests.test_tamper_changes_recovered_message)
+Perubahan c2 harus menghasilkan plaintext berbeda dari m asli. ... ok
+test_tamper_endpoint_value_is_different (test_crypto.ElGamalTests.test_tamper_endpoint_value_is_different)
+Simulasi server harus memilih perubahan yang menghasilkan nilai berbeda. ... ok
+test_extended_gcd_identity (test_crypto.MathUtilityTests.test_extended_gcd_identity) ... ok
+test_gcd (test_crypto.MathUtilityTests.test_gcd) ... ok
+test_generate_prime_size_and_primality (test_crypto.MathUtilityTests.test_generate_prime_size_and_primality) ... ok
+test_is_prime_known_values (test_crypto.MathUtilityTests.test_is_prime_known_values) ... ok
+test_is_prime_large (test_crypto.MathUtilityTests.test_is_prime_large) ... ok
+test_mod_exp_edge_cases (test_crypto.MathUtilityTests.test_mod_exp_edge_cases) ... ok
+test_mod_exp_matches_builtin_pow (test_crypto.MathUtilityTests.test_mod_exp_matches_builtin_pow)
+mod_exp harus sama dengan pow(a, b, m) bawaan Python. ... ok
+test_mod_inverse (test_crypto.MathUtilityTests.test_mod_inverse) ... ok
+test_mod_inverse_rejects_non_coprime (test_crypto.MathUtilityTests.test_mod_inverse_rejects_non_coprime) ... ok
+test_random_below_range (test_crypto.MathUtilityTests.test_random_below_range) ... ok
+test_random_coprime (test_crypto.MathUtilityTests.test_random_coprime) ... ok
+test_safe_prime_and_generator (test_crypto.MathUtilityTests.test_safe_prime_and_generator) ... ok
+
+----------------------------------------------------------------------
+Ran 46 tests in 0.732s
+
+OK
+
+=== 2. VERIFIKASI REFERENSI p=23 (python reference_demo.py) ===
+====================================================================
+VERIFIKASI REFERENSI p=23 — SECURE MULTIPLAYER GAME SIMULATOR
+====================================================================
+
+[PARAMETER]
+p                                  23
+q = (p-1)/2                        11
+p prima                            True
+q prima (safe prime)               True
+g = 5 generator                    True
+
+[DIFFIE-HELLMAN]
+A = g^a mod p                      5^6 mod 23 = 8
+B = g^b mod p                      5^15 mod 23 = 19
+K_A = B^a mod p                    19^6 mod 23 = 2
+K_B = A^b mod p                    8^15 mod 23 = 2
+K_A == K_B                         True
+
+[SQUARE-AND-MULTIPLY A = 5^6 mod 23]
+i | bit | faktor | sebelum | sesudah | dikali
+0 |   0 |      5 |       1 |       1 | tidak
+1 |   1 |      2 |       1 |       2 | ya
+2 |   1 |      4 |       2 |       8 | ya
+hasil                              8
+
+[ELGAMAL MURNI — SESUAI CONTOH SPESIFIKASI]
+y = g^x mod p                      5^6 mod 23 = 8
+k                                  3
+c1 = g^k mod p                     5^3 mod 23 = 10
+y^k mod p                          6
+c2 = m*y^k mod p                   12*6 mod 23 = 3
+s = c1^x mod p                     10^6 mod 23 = 6
+s^-1 mod p                         6^-1 mod 23 = 4
+cek s*s^-1 mod p                   1
+m' = c2*s^-1 mod p                 12
+m' == m                            True
+
+[VARIAN INTEGRASI APLIKASI LIVE — m' = (m + K) mod p]
+K sesi DH                          2
+m' = (m + K) mod p                 14
+c1                                 10
+c2 = m'*y^k mod p                  15
+dekripsi ElGamal m'                14
+m = (m' - K) mod p                 12
+
+SEMUA NILAI REFERENSI COCOK.
+Catatan: parameter kecil ini hanya untuk pembelajaran, bukan produksi.

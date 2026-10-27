@@ -1,0 +1,852 @@
+{
+  "stages": {
+    "0": {
+      "number": 0,
+      "key": "setup",
+      "title": "Tahap 0 — Parameter Publik",
+      "blocks": [
+        {
+          "label": "0. Pembangkitan safe prime dan generator",
+          "formula": "p = 2q + 1, dengan p dan q prima; g ∈ [2, p-2]",
+          "substitution": "p = 46199 (safe prime, 16 bit)\nq = 23099 (prima, 15 bit)\nverifikasi: 2·q + 1 = 46199 = p\ng = 27008; periksa g² mod p = 42252 ≠ 1 dan g^q mod p = 46198 ≠ 1",
+          "result": "Parameter publik siap dibagikan melalui jaringan.",
+          "tone": "success"
+        }
+      ],
+      "summary": "p = 46199 · q = 23099 · g = 27008",
+      "note": "Mode Mode Demo (16 bit). Aman prima berarti p = 2q + 1 sehingga grup perkalian modulo p memiliki subgrup besar berorder prima q. Waktu pembangkitan: 0.2 ms.",
+      "values": {
+        "p": "46199",
+        "q": "23099",
+        "g": "27008",
+        "bits": 16
+      }
+    },
+    "1": {
+      "number": 1,
+      "key": "keygen",
+      "title": "Tahap 1 — Pembangkitan Kunci ElGamal Server",
+      "blocks": [
+        {
+          "label": "1a. Pilih kunci privat x",
+          "formula": "x ∈ [2, p-2], x rahasia",
+          "substitution": "x = 37205",
+          "result": "x hanya disimpan di panel server."
+        },
+        {
+          "label": "1b. Hitung kunci publik y",
+          "formula": "y = g^x mod p",
+          "substitution": "y = 27008^37205 mod 46199 = 35786",
+          "result": "Kunci publik server: y = 35786",
+          "tone": "success"
+        }
+      ],
+      "summary": "y = 35786",
+      "note": "y boleh diketahui semua pihak, termasuk Eve. x tetap rahasia server.",
+      "values": {
+        "x": "37205",
+        "y": "35786"
+      }
+    },
+    "2": {
+      "number": 2,
+      "key": "dh",
+      "title": "Tahap 2 — Diffie-Hellman",
+      "blocks": [
+        {
+          "label": "2a. Pemain memilih a dan mengirim A",
+          "formula": "a ∈ [2, p-2] (rahasia) ; A = g^a mod p",
+          "substitution": "a = 18537\nA = 27008^18537 mod 46199 = 19982",
+          "result": "Pemain → Server: A = 19982"
+        }
+      ],
+      "summary": "Menunggu pertukaran kunci.",
+      "note": "K tidak pernah dikirim. Eve hanya melihat A dan B. Untuk mendapat K, Eve harus menyelesaikan logaritma diskret a atau b.",
+      "values": {
+        "a": "18537",
+        "A": "19982",
+        "b": null,
+        "B": null,
+        "K_player": null,
+        "K_server": null,
+        "verified": false
+      }
+    },
+    "3": {
+      "number": 2,
+      "key": "dh",
+      "title": "Tahap 2 — Diffie-Hellman",
+      "blocks": [
+        {
+          "label": "2a. Pemain memilih a dan mengirim A",
+          "formula": "a ∈ [2, p-2] (rahasia) ; A = g^a mod p",
+          "substitution": "a = 18537\nA = 27008^18537 mod 46199 = 19982",
+          "result": "Pemain → Server: A = 19982"
+        },
+        {
+          "label": "2b. Server memilih b dan mengirim B",
+          "formula": "b ∈ [2, p-2] (rahasia) ; B = g^b mod p",
+          "substitution": "b = 6461\nB = 27008^6461 mod 46199 = 29174",
+          "result": "Server → Pemain: B = 29174"
+        },
+        {
+          "label": "2c. Kedua pihak menghitung K",
+          "formula": "K_pemain = B^a mod p ; K_server = A^b mod p",
+          "substitution": "K_pemain = 29174^18537 mod 46199 = 36691\nK_server = 19982^6461 mod 46199 = 36691",
+          "result": "K_pemain = 36691\nK_server = 36691",
+          "tone": "success"
+        },
+        {
+          "label": "2d. Pemeriksaan otomatis",
+          "formula": "K_pemain == K_server ?",
+          "substitution": "36691 == 36691",
+          "result": "SAMA — kunci sesi berhasil disepakati (indikator hijau).",
+          "tone": "success"
+        }
+      ],
+      "summary": "K = 36691 (terverifikasi sama di kedua sisi)",
+      "note": "K tidak pernah dikirim. Eve hanya melihat A dan B. Untuk mendapat K, Eve harus menyelesaikan logaritma diskret a atau b.",
+      "values": {
+        "a": "18537",
+        "A": "19982",
+        "b": "6461",
+        "B": "29174",
+        "K_player": "36691",
+        "K_server": "36691",
+        "verified": true
+      }
+    },
+    "4": {
+      "number": 3,
+      "key": "mask",
+      "title": "Tahap 3 — Penyamaran Pesan dengan Kunci Sesi",
+      "blocks": [
+        {
+          "label": "3a. Pesan asli pemain",
+          "formula": "0 ≤ m < p",
+          "substitution": "m = 1 → Aksi: Serang",
+          "result": "Pesan asli: Aksi: Serang"
+        },
+        {
+          "label": "3b. Samarkan dengan K hasil Diffie-Hellman",
+          "formula": "m' = (m + K) mod p",
+          "substitution": "m' = (1 + 36691) mod 46199 = 36692",
+          "result": "Pesan bertopeng: m' = 36692",
+          "tone": "success"
+        }
+      ],
+      "summary": "m = 1 → m' = 36692",
+      "note": "m' inilah yang akan dienkripsi ElGamal. Tanpa K, Eve tidak dapat memulihkan m walau ia berhasil memecahkan ElGamal.",
+      "values": {
+        "m": "1",
+        "m_prime": "36692",
+        "K": "36691",
+        "data_type": "action",
+        "label": "Aksi: Serang"
+      }
+    },
+    "5": {
+      "number": 4,
+      "key": "encrypt",
+      "title": "Tahap 4 — Enkripsi ElGamal oleh Pemain",
+      "blocks": [
+        {
+          "label": "4a. Pilih nonce k",
+          "formula": "2 ≤ k ≤ p-2 ; FPB(k, p-1) = 1",
+          "substitution": "k = 2817\nFPB(2817, 46198) = 1",
+          "result": "Nonce sesi: k = 2817 (rahasia pemain, dipakai sekali)."
+        },
+        {
+          "label": "4b. Hitung c1",
+          "formula": "c1 = g^k mod p",
+          "substitution": "c1 = 27008^2817 mod 46199 = 41284",
+          "result": "c1 = 41284"
+        },
+        {
+          "label": "4c. Hitung c2",
+          "formula": "c2 = m' · y^k mod p",
+          "substitution": "y^k mod p = 35786^2817 mod 46199 = 44879\nc2 = (36692 · 44879) mod 46199 = 29311",
+          "result": "c2 = 29311",
+          "tone": "success"
+        }
+      ],
+      "summary": "(c1, c2) = (41284, 29311)",
+      "note": "Kedua bilangan ini yang melintasi jaringan dan dapat disadap Eve.",
+      "values": {
+        "k": "2817",
+        "c1": "41284",
+        "c2": "29311",
+        "yk": "44879"
+      }
+    },
+    "6": {
+      "number": 5,
+      "key": "decrypt",
+      "title": "Tahap 5 — Dekripsi ElGamal oleh Server",
+      "blocks": [
+        {
+          "label": "5a. Dekripsi ElGamal",
+          "formula": "s = c1^x mod p ; m' = c2 · s^-1 mod p",
+          "substitution": "s = 41284^37205 mod 46199 = 44879\ns^-1 mod p = 46164  (cek s·s^-1 mod p = 1)\nm' = 29311 · 46164 mod 46199 = 36692",
+          "result": "Pesan bertopeng diterima: m' = 36692"
+        },
+        {
+          "label": "5b. Lepas topeng dengan K",
+          "formula": "m = (m' - K) mod p",
+          "substitution": "m = (36692 - 36691) mod 46199 = 1",
+          "result": "Data diterima server: Aksi: Serang",
+          "tone": "success"
+        }
+      ],
+      "summary": "Aksi: Serang",
+      "note": "Server memakai x untuk membuka ElGamal, lalu K hasil DH untuk melepas topeng. Kedua rahasia harus benar agar m pulih.",
+      "values": {
+        "s": "44879",
+        "s_inv": "46164",
+        "m_prime": "36692",
+        "m": "1",
+        "label": "Aksi: Serang",
+        "valid": true
+      }
+    },
+    "7": {
+      "number": 6,
+      "key": "eve",
+      "title": "Tahap 6 — Panel Penyadap (Eve)",
+      "type": "eve",
+      "visible": [
+        {
+          "key": "p",
+          "label": "p (modulus publik)",
+          "value": "46199",
+          "note": "safe prime"
+        },
+        {
+          "key": "q",
+          "label": "q (faktor prima)",
+          "value": "23099",
+          "note": "p = 2q + 1"
+        },
+        {
+          "key": "g",
+          "label": "g (generator)",
+          "value": "27008",
+          "note": "dipakai bersama"
+        },
+        {
+          "key": "y",
+          "label": "y (kunci publik server)",
+          "value": "35786",
+          "note": "y = g^x mod p"
+        },
+        {
+          "key": "A",
+          "label": "A (kunci publik pemain)",
+          "value": "19982",
+          "note": "A = g^a mod p"
+        },
+        {
+          "key": "B",
+          "label": "B (kunci publik server)",
+          "value": "29174",
+          "note": "B = g^b mod p"
+        },
+        {
+          "key": "c1",
+          "label": "c1 (ciphertext)",
+          "value": "41284",
+          "note": "c1 = g^k mod p"
+        },
+        {
+          "key": "c2",
+          "label": "c2 (ciphertext)",
+          "value": "29311",
+          "note": "c2 = m'·y^k mod p"
+        }
+      ],
+      "hidden": [
+        {
+          "key": "a",
+          "label": "a",
+          "note": "rahasia pemain (DH)"
+        },
+        {
+          "key": "b",
+          "label": "b",
+          "note": "rahasia server (DH)"
+        },
+        {
+          "key": "x",
+          "label": "x",
+          "note": "kunci privat ElGamal server"
+        },
+        {
+          "key": "k",
+          "label": "k",
+          "note": "nonce enkripsi pemain"
+        },
+        {
+          "key": "K",
+          "label": "K",
+          "note": "kunci sesi hasil DH"
+        },
+        {
+          "key": "m",
+          "label": "m",
+          "note": "pesan asli"
+        },
+        {
+          "key": "mprime",
+          "label": "m'",
+          "note": "pesan bertopeng"
+        }
+      ],
+      "blocks": [
+        {
+          "label": "6a. Yang bisa dilihat Eve",
+          "formula": "p, q, g, y, A, B, c1, c2",
+          "substitution": "Semua nilai ini melintasi jaringan atau dipublikasikan.",
+          "result": "Eve dapat menyalin seluruh paket, tetapi tidak memperoleh kunci."
+        },
+        {
+          "label": "6b. Yang tidak bisa dilihat Eve",
+          "formula": "a, b, x, k, K, m",
+          "substitution": "Nilai-nilai ini tidak pernah dikirim atau hanya ada di sisi masing-masing peran.",
+          "result": "Eve harus memecahkan logaritma diskret untuk menebak a, b, atau x.",
+          "tone": "danger"
+        }
+      ],
+      "summary": "Eve hanya melihat data publik; kerahasiaan bergantung pada sulitnya logaritma diskret.",
+      "note": "Dari y = g^x mod p, Eve harus mencari x. Dari A = g^a mod p, Eve harus mencari a. Pada Mode Demo 16 bit, pencarian seperti ini masih mungkin dilakukan dengan brute force; pada Mode Aman 128 bit, jauh lebih mahal.",
+      "values": {}
+    },
+    "8": {
+      "number": 7,
+      "key": "tamper",
+      "title": "Tahap 7 — Skenario Serangan Cheater",
+      "type": "tamper",
+      "blocks": [
+        {
+          "label": "7a. Eve mengubah ciphertext",
+          "formula": "c2' = (c2 + Δ) mod p",
+          "substitution": "c2 asli = 29311\nΔ = 13730\nc2' = (29311 + 13730) mod 46199 = 43041",
+          "result": "Paket diubah: c2 → 43041",
+          "tone": "danger"
+        },
+        {
+          "label": "7b. Server mendekripsi paket palsu",
+          "formula": "s = c1^x mod p ; m' = c2'·s^-1 mod p ; m = (m' - K) mod p",
+          "substitution": "m' hasil dekripsi = 18132\nm hasil pelepasan topeng = 27640\npesan asli yang seharusnya = 1",
+          "result": "Server menampilkan: Aksi tidak dikenal (kode 27640)",
+          "tone": "danger"
+        },
+        {
+          "label": "7c. Status validasi",
+          "formula": "cek domain pesan dan perbandingan integritas",
+          "substitution": "valid secara domain: tidak\ncocok dengan nilai asli: tidak",
+          "result": "MENCURIGAKAN — pesan berubah di jaringan.",
+          "tone": "danger"
+        }
+      ],
+      "tamper": {
+        "original_c2": "29311",
+        "tampered_c2": "43041",
+        "delta": "13730",
+        "m_prime": "18132",
+        "m": "27640",
+        "original_m": "1",
+        "original_label": "Aksi: Serang",
+        "label": "Aksi tidak dikenal (kode 27640)",
+        "range_valid": false,
+        "integrity_ok": false,
+        "suspicious": true
+      },
+      "summary": "Server menerima 'Aksi tidak dikenal (kode 27640)' (asli: 'Aksi: Serang'). Status: MENCURIGAKAN.",
+      "note": "ElGamal polos bersifat malleable: perubahan pada c2 menghasilkan perubahan pada plaintext tanpa error. Deteksi pada simulator ini memakai validasi domain dan perbandingan dengan nilai asli yang disimpan; server nyata tanpa tanda tangan digital/MAC tidak memiliki cara kriptografis untuk mengetahuinya.",
+      "values": {
+        "original_c2": "29311",
+        "tampered_c2": "43041",
+        "delta": "13730",
+        "m_prime": "18132",
+        "m": "27640",
+        "original_m": "1",
+        "range_valid": false,
+        "integrity_ok": false,
+        "suspicious": true
+      }
+    }
+  },
+  "state": {
+    "ok": true,
+    "view": {
+      "has_session": true,
+      "mode": "demo",
+      "mode_label": "Mode Demo (16 bit)",
+      "bits": 16,
+      "step": 8,
+      "params": {
+        "p": "46199",
+        "q": "23099",
+        "g": "27008"
+      },
+      "dh": {
+        "A": "19982",
+        "B": "29174",
+        "verified": true
+      },
+      "elgamal": {
+        "y": "35786"
+      },
+      "message": {
+        "data_type": "action",
+        "m": "1",
+        "m_prime": "36692",
+        "label": "Aksi: Serang"
+      },
+      "cipher": {
+        "c1": "41284",
+        "c2": "29311"
+      },
+      "decryption": {
+        "m": "1",
+        "label": "Aksi: Serang",
+        "valid": true
+      },
+      "tamper": {
+        "m": "27640",
+        "label": "Aksi tidak dikenal (kode 27640)",
+        "suspicious": true,
+        "range_valid": false
+      },
+      "packets": [
+        {
+          "seq": 1,
+          "stage": 2,
+          "from": "PEMAIN",
+          "to": "SERVER",
+          "type": "DH-1 · kunci publik pemain",
+          "status": "delivered",
+          "fields": [
+            {
+              "label": "A",
+              "value": "19982"
+            }
+          ],
+          "note": "A = g^a mod p. Eve dapat membaca A, tetapi tidak dapat memperoleh a."
+        },
+        {
+          "seq": 2,
+          "stage": 2,
+          "from": "SERVER",
+          "to": "PEMAIN",
+          "type": "DH-2 · kunci publik server",
+          "status": "delivered",
+          "fields": [
+            {
+              "label": "B",
+              "value": "29174"
+            }
+          ],
+          "note": "B = g^b mod p. Setelah A dan B bertukar, kedua pihak menghitung K."
+        },
+        {
+          "seq": 3,
+          "stage": 4,
+          "from": "PEMAIN",
+          "to": "SERVER",
+          "type": "ELGAMAL · ciphertext",
+          "status": "delivered",
+          "fields": [
+            {
+              "label": "c1",
+              "value": "41284"
+            },
+            {
+              "label": "c2",
+              "value": "29311"
+            }
+          ],
+          "note": "ElGamal mengirim dua bilangan. Eave tidak dapat memisahkan m' dari c1 dan c2."
+        },
+        {
+          "seq": 4,
+          "stage": 7,
+          "from": "EVE",
+          "to": "SERVER",
+          "type": "PAKET DIUBAH · serangan cheater",
+          "status": "tampered",
+          "fields": [
+            {
+              "label": "c1",
+              "value": "41284"
+            },
+            {
+              "label": "c2 (asli)",
+              "value": "29311"
+            },
+            {
+              "label": "c2 (diubah)",
+              "value": "43041"
+            }
+          ],
+          "note": "Eve mengubah c2 di jalan. Server tetap mendekripsi karena tidak ada tag integritas."
+        }
+      ],
+      "logs": [
+        {
+          "seq": 1,
+          "stage": "0",
+          "kind": "ok",
+          "message": "Parameter publik dibuat: p 16 bit, q 15 bit, generator g ditemukan."
+        },
+        {
+          "seq": 2,
+          "stage": "1",
+          "kind": "ok",
+          "message": "Server membuat kunci ElGamal: x rahasia dan y publik."
+        },
+        {
+          "seq": 3,
+          "stage": "2",
+          "kind": "info",
+          "message": "Tahap 2a: pemain mengirim nilai publik A."
+        },
+        {
+          "seq": 4,
+          "stage": "2",
+          "kind": "ok",
+          "message": "Tahap 2c: K pemain dan K server dihitung dan dibandingkan."
+        },
+        {
+          "seq": 5,
+          "stage": "2",
+          "kind": "ok",
+          "message": "Tahap 2d: verifikasi berhasil — K pemain = K server."
+        },
+        {
+          "seq": 6,
+          "stage": "3",
+          "kind": "info",
+          "message": "Tahap 3: pesan 1 disamarkan dengan K menjadi m'."
+        },
+        {
+          "seq": 7,
+          "stage": "4",
+          "kind": "info",
+          "message": "Tahap 4: ciphertext ElGamal (c1, c2) dikirim ke server."
+        },
+        {
+          "seq": 8,
+          "stage": "5",
+          "kind": "ok",
+          "message": "Tahap 5: server memulihkan pesan 'Aksi: Serang'."
+        },
+        {
+          "seq": 9,
+          "stage": "6",
+          "kind": "warn",
+          "message": "Tahap 6: Eve memeriksa data publik yang berhasil disadap."
+        },
+        {
+          "seq": 10,
+          "stage": "7",
+          "kind": "danger",
+          "message": "Tahap 7: c2 diubah; server menerima nilai berbeda (27640)."
+        },
+        {
+          "seq": 11,
+          "stage": "7",
+          "kind": "warn",
+          "message": "Hasil berada di luar domain pesan yang valid."
+        }
+      ],
+      "roles": {
+        "player": {
+          "name": "PEMAIN",
+          "subtitle": "Klien game",
+          "public": [
+            {
+              "key": "p",
+              "label": "p",
+              "value": "46199",
+              "note": "parameter publik"
+            },
+            {
+              "key": "q",
+              "label": "q",
+              "value": "23099",
+              "note": "parameter publik"
+            },
+            {
+              "key": "g",
+              "label": "g",
+              "value": "27008",
+              "note": "generator"
+            },
+            {
+              "key": "y",
+              "label": "y server",
+              "value": "35786",
+              "note": "kunci publik ElGamal"
+            },
+            {
+              "key": "B",
+              "label": "B server",
+              "value": "29174",
+              "note": "diterima dari server"
+            }
+          ],
+          "secret": [
+            {
+              "key": "a",
+              "label": "a",
+              "value": "18537",
+              "note": "eksponen rahasia pemain"
+            },
+            {
+              "key": "K",
+              "label": "K",
+              "value": "36691",
+              "note": "kunci sesi hasil DH"
+            },
+            {
+              "key": "m",
+              "label": "m",
+              "value": "1",
+              "note": "pesan asli"
+            },
+            {
+              "key": "mprime",
+              "label": "m'",
+              "value": "36692",
+              "note": "pesan bertopeng"
+            },
+            {
+              "key": "k",
+              "label": "k",
+              "value": "2817",
+              "note": "nonce ElGamal"
+            }
+          ],
+          "sent": [
+            {
+              "key": "A",
+              "label": "A",
+              "value": "19982",
+              "note": "dikirim ke server"
+            },
+            {
+              "key": "c1",
+              "label": "c1",
+              "value": "41284",
+              "note": "ciphertext"
+            },
+            {
+              "key": "c2",
+              "label": "c2",
+              "value": "29311",
+              "note": "ciphertext"
+            }
+          ]
+        },
+        "server": {
+          "name": "SERVER",
+          "subtitle": "Game authority",
+          "public": [
+            {
+              "key": "p",
+              "label": "p",
+              "value": "46199",
+              "note": "parameter publik"
+            },
+            {
+              "key": "q",
+              "label": "q",
+              "value": "23099",
+              "note": "parameter publik"
+            },
+            {
+              "key": "g",
+              "label": "g",
+              "value": "27008",
+              "note": "generator"
+            },
+            {
+              "key": "y",
+              "label": "y",
+              "value": "35786",
+              "note": "kunci publik sendiri"
+            },
+            {
+              "key": "A",
+              "label": "A pemain",
+              "value": "19982",
+              "note": "diterima dari pemain"
+            },
+            {
+              "key": "B",
+              "label": "B",
+              "value": "29174",
+              "note": "dikirim ke pemain"
+            }
+          ],
+          "secret": [
+            {
+              "key": "x",
+              "label": "x",
+              "value": "37205",
+              "note": "kunci privat ElGamal"
+            },
+            {
+              "key": "b",
+              "label": "b",
+              "value": "6461",
+              "note": "eksponen rahasia server"
+            },
+            {
+              "key": "K",
+              "label": "K",
+              "value": "36691",
+              "note": "kunci sesi hasil DH"
+            },
+            {
+              "key": "s",
+              "label": "s",
+              "value": "44879",
+              "note": "c1^x mod p"
+            },
+            {
+              "key": "sinv",
+              "label": "s^-1",
+              "value": "46164",
+              "note": "invers modular s"
+            },
+            {
+              "key": "mprime",
+              "label": "m' diterima",
+              "value": "36692",
+              "note": "hasil dekripsi"
+            },
+            {
+              "key": "m",
+              "label": "m diterima",
+              "value": "1",
+              "note": "hasil akhir"
+            }
+          ],
+          "received": [
+            {
+              "key": "c1",
+              "label": "c1",
+              "value": "41284",
+              "note": "ciphertext diterima"
+            },
+            {
+              "key": "c2",
+              "label": "c2",
+              "value": "29311",
+              "note": "ciphertext diterima"
+            }
+          ]
+        },
+        "eve": {
+          "name": "EVE",
+          "subtitle": "Penyadap jaringan",
+          "visible": [
+            {
+              "key": "p",
+              "label": "p (modulus publik)",
+              "value": "46199",
+              "note": "safe prime"
+            },
+            {
+              "key": "q",
+              "label": "q (faktor prima)",
+              "value": "23099",
+              "note": "p = 2q + 1"
+            },
+            {
+              "key": "g",
+              "label": "g (generator)",
+              "value": "27008",
+              "note": "dipakai bersama"
+            },
+            {
+              "key": "y",
+              "label": "y (kunci publik server)",
+              "value": "35786",
+              "note": "y = g^x mod p"
+            },
+            {
+              "key": "A",
+              "label": "A (kunci publik pemain)",
+              "value": "19982",
+              "note": "A = g^a mod p"
+            },
+            {
+              "key": "B",
+              "label": "B (kunci publik server)",
+              "value": "29174",
+              "note": "B = g^b mod p"
+            },
+            {
+              "key": "c1",
+              "label": "c1 (ciphertext)",
+              "value": "41284",
+              "note": "c1 = g^k mod p"
+            },
+            {
+              "key": "c2",
+              "label": "c2 (ciphertext)",
+              "value": "29311",
+              "note": "c2 = m'·y^k mod p"
+            },
+            {
+              "key": "c2_tampered",
+              "label": "c2 setelah diubah",
+              "value": "43041",
+              "note": "terlihat di jaringan"
+            }
+          ],
+          "hidden": [
+            {
+              "key": "a",
+              "label": "a",
+              "note": "rahasia pemain (DH)"
+            },
+            {
+              "key": "b",
+              "label": "b",
+              "note": "rahasia server (DH)"
+            },
+            {
+              "key": "x",
+              "label": "x",
+              "note": "kunci privat ElGamal server"
+            },
+            {
+              "key": "k",
+              "label": "k",
+              "note": "nonce enkripsi pemain"
+            },
+            {
+              "key": "K",
+              "label": "K",
+              "note": "kunci sesi hasil DH"
+            },
+            {
+              "key": "m",
+              "label": "m",
+              "note": "pesan asli"
+            },
+            {
+              "key": "mprime",
+              "label": "m'",
+              "note": "pesan bertopeng"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

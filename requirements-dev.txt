@@ -1,0 +1,6 @@
+# Dependensi opsional untuk membangun ulang laporan.
+# Aplikasi utama dan pengujian TIDAK memerlukan paket ini.
+-r requirements.txt
+
+Markdown==3.11.2
+playwright==1.64.1

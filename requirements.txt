@@ -1,0 +1,9 @@
+# Secure Multiplayer Game Simulator - Kelompok 4
+# Runtime dan pengujian memakai Python standard library.
+# Tidak ada dependensi pihak ketiga yang diperlukan untuk menjalankan
+# aplikasi utama atau menjalankan unittest.
+#
+# Persyaratan: Python >= 3.10 (diuji dengan Python 3.13.7).
+#
+# Dependensi opsional untuk membangun ulang laporan ada di
+# requirements-dev.txt.
