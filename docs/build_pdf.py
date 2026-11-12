@@ -18,8 +18,8 @@ import markdown
 from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
-MD_PATH = ROOT / "Laporan_Kelompok_4.md"
-OUT_PATH = ROOT / "Laporan_Kelompok_4.pdf"
+MD_PATH = ROOT / "Laporan_Kelompok_11.md"
+OUT_PATH = ROOT / "Laporan_Kelompok_11.pdf"
 HTML_PATH = ROOT / "docs" / "_report_print.html"
 
 
@@ -46,7 +46,7 @@ def cover_html(lines: list[str]) -> str:
       <div class="cover-meta">
         <div><span>Mata Kuliah</span><b>{metadata.get('Mata Kuliah', 'Kriptografi (C)')}</b></div>
         <div><span>Dosen Pengampu</span><b>{metadata.get('Dosen Pengampu', '[Nama Dosen]')}</b></div>
-        <div><span>Kelompok</span><b>{metadata.get('Kelompok', 'Kelompok 4')}</b></div>
+        <div><span>Kelompok</span><b>{metadata.get('Kelompok', 'Kelompok 11')}</b></div>
       </div>
 
       <div class="cover-members">
@@ -228,7 +228,7 @@ def build_html() -> str:
 <head>
 <meta charset="utf-8">
 <base href="../">
-<title>Laporan Kelompok 4 — Secure Multiplayer Game Simulator</title>
+<title>Laporan Kelompok 11 — Secure Multiplayer Game Simulator</title>
 <style>{css}</style>
 </head>
 <body>
@@ -256,7 +256,7 @@ def main() -> None:
             footer_template=(
                 "<div style=\"width:100%;padding:0 17mm;font-family:Segoe UI,Arial,sans-serif;"
                 "font-size:7.2pt;color:#5c6066;display:flex;justify-content:space-between;\">"
-                "<span>Secure Multiplayer Game Simulator · Kriptografi (C) · Kelompok 4</span>"
+                "<span>Secure Multiplayer Game Simulator · Kriptografi (C) · Kelompok 11</span>"
                 "<span>Halaman <span class=\"pageNumber\"></span> / <span class=\"totalPages\"></span></span>"
                 "</div>"
             ),

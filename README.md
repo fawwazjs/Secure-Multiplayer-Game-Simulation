@@ -1,4 +1,4 @@
-﻿# Secure Multiplayer Game Simulator
+# Secure Multiplayer Game Simulator
 
 **Mata Kuliah:** Kriptografi (C)  
 **Kelompok:** Kelompok 11
@@ -88,9 +88,9 @@ Secure-Multiplayer-Game-Simulation/
 │   ├── diagram-alur.png
 │   ├── diagram-tahapan.png
 │   └── screenshots/
-├── Laporan_Kelompok_4.md
-├── Laporan_Kelompok_4.docx
-├── Laporan_Kelompok_4.pdf
+├── Laporan_Kelompok_11.md
+├── Laporan_Kelompok_11.docx
+├── Laporan_Kelompok_11.pdf
 ├── README.md
 ├── README.txt
 ├── requirements.txt
@@ -201,9 +201,9 @@ Untuk sistem nyata, gunakan TLS 1.3, pustaka kriptografi yang diaudit, parameter
 
 ## Dokumentasi
 
-- `Laporan_Kelompok_4.pdf` — laporan akademik lengkap (PDF).
-- `Laporan_Kelompok_4.docx` — laporan versi Word.
-- `Laporan_Kelompok_4.md` — sumber laporan Markdown.
+- `Laporan_Kelompok_11.pdf` — laporan akademik lengkap (PDF).
+- `Laporan_Kelompok_11.docx` — laporan versi Word.
+- `Laporan_Kelompok_11.md` — sumber laporan Markdown.
 - `docs/Perhitungan_Manual.md` — perhitungan manual p=23 dan varian integrasi.
 - `docs/Hasil_Pengujian.txt` — keluaran aktual pengujian.
 - `docs/screenshots/` — tangkapan layar aplikasi.

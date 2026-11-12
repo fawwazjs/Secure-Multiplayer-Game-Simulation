@@ -1,6 +1,6 @@
 # BUKU PANDUAN LENGKAP & MATERI PRESENTASI LISAN
 ## Proyek: Secure Multiplayer Game Simulator
-**Mata Kuliah:** Kriptografi (C) — Kelompok 4  
+**Mata Kuliah:** Kriptografi (C) — Kelompok 11  
 **Anggota:**  
 1. Ahmad Wildan Fawwaz (5027241001)  
 2. Dimas Satya Andhika (5027241032)  
@@ -447,7 +447,7 @@ Gunakan struktur presentasi 5–7 menit berikut. Kamu bisa membagi peran jika pr
 ### Naskah Lisan Menit per Menit (Speech Script)
 
 #### Menit 1:00 — Pembukaan & Hook Masalah
-> *"Selamat pagi/siang Bu Annisaa dan rekan-rekan semua. Kami dari Kelompok 4 hari ini membawakan proyek bertajuk **Secure Multiplayer Game Simulator**.*  
+> *"Selamat pagi/siang Bu Annisaa dan rekan-rekan semua. Kami dari Kelompok 11 hari ini membawakan proyek bertajuk **Secure Multiplayer Game Simulator**.*  
 >  
 > *Pernahkah teman-teman bermain game online dan tiba-tiba bertemu lawan yang memakai cheat 'one-hit kill'? Atau bagaimana jika ada hacker di jaringan Wi-Fi publik yang bisa membaca jurus apa yang akan kita keluarkan sebelum kita menyerang?*  
 >  
@@ -491,7 +491,7 @@ Gunakan struktur presentasi 5–7 menit berikut. Kamu bisa membagi peran jika pr
 #### Menit 6:00 — Penutup & Kesimpulan
 > *"Sebagai kesimpulan, proyek ini membuktikan bahwa keamanan aplikasi bukan hanya soal memasang rumus kriptografi di atas kertas, melainkan bagaimana menyatukan arsitektur sistem yang tepat—yaitu **Server-Authoritative**—dengan pondasi matematika yang kokoh.*  
 >  
-> *Sekian presentasi dari Kelompok 4. Kami siap menerima pertanyaan atau tanggapan dari Bu Annisaa dan rekan-rekan. Terima kasih."*
+> *Sekian presentasi dari Kelompok 11. Kami siap menerima pertanyaan atau tanggapan dari Bu Annisaa dan rekan-rekan. Terima kasih."*
 
 ---
 

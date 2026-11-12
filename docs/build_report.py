@@ -1,4 +1,4 @@
-"""Bangun Laporan_Kelompok_4.docx dari Laporan_Kelompok_4.md.
+"""Bangun Laporan_Kelompok_11.docx dari Laporan_Kelompok_11.md.
 
 Skrip ini hanya memakai Python standard library (re, zipfile, struct, pathlib,
 xml.sax.saxutils). Tidak ada pustaka dokumen pihak ketiga. Format DOCX dibuat
@@ -14,8 +14,8 @@ from pathlib import Path
 from xml.sax.saxutils import escape
 
 ROOT = Path(__file__).resolve().parents[1]
-MD_PATH = ROOT / "Laporan_Kelompok_4.md"
-OUT_PATH = ROOT / "Laporan_Kelompok_4.docx"
+MD_PATH = ROOT / "Laporan_Kelompok_11.md"
+OUT_PATH = ROOT / "Laporan_Kelompok_11.docx"
 
 W_NS = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
 R_NS = "http://schemas.openxmlformats.org/officeDocument/2006/relationships"
@@ -368,7 +368,7 @@ class ReportBuilder:
         )
         out.append(
             '<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="0" w:after="480"/></w:pPr>'
-            + run_xml("Kelompok 4", bold=True, size=52, color=ORANGE, font="Georgia")
+            + run_xml("Kelompok 11", bold=True, size=52, color=ORANGE, font="Georgia")
             + "</w:p>"
         )
         out.append(
@@ -650,7 +650,7 @@ def footer_xml(first: bool = False) -> str:
         f'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
         f'<w:ftr xmlns:w="{W_NS}" xmlns:r="{R_NS}">'
         '<w:p><w:pPr><w:pStyle w:val="Footer"/><w:jc w:val="center"/></w:pPr>'
-        + run_xml("Secure Multiplayer Game Simulator  ·  Kriptografi (C) - Kelompok 4  ·  Halaman ", size=16, color=SLATE)
+        + run_xml("Secure Multiplayer Game Simulator  ·  Kriptografi (C) - Kelompok 11  ·  Halaman ", size=16, color=SLATE)
         + '<w:fldSimple w:instr=" PAGE "><w:r><w:t>1</w:t></w:r></w:fldSimple>'
         + "</w:p></w:ftr>"
     )
@@ -722,8 +722,8 @@ def core_xml() -> str:
         'xmlns:dcmitype="http://purl.org/dc/dcmitype/" '
         'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'
         "<dc:title>Laporan Program: Secure Multiplayer Game Simulator</dc:title>"
-        "<dc:creator>Kelompok 4 - Kriptografi (C)</dc:creator>"
-        "<cp:lastModifiedBy>Kelompok 4</cp:lastModifiedBy>"
+        "<dc:creator>Kelompok 11 - Kriptografi (C)</dc:creator>"
+        "<cp:lastModifiedBy>Kelompok 11</cp:lastModifiedBy>"
         "<dc:description>Laporan program Diffie-Hellman dan ElGamal</dc:description>"
         "</cp:coreProperties>"
     )
@@ -735,7 +735,7 @@ def app_xml() -> str:
         '<Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties" '
         'xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes">'
         "<Application>Python stdlib DOCX builder</Application>"
-        "<Company>Kelompok 4</Company>"
+        "<Company>Kelompok 11</Company>"
         "</Properties>"
     )
 

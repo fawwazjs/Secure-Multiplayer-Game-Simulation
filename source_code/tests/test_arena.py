@@ -218,7 +218,7 @@ class ApiTests(unittest.TestCase):
         self.assertIn("Studi kasus pertarungan", text)
         self.assertIn("Diffie-Hellman", text)
         self.assertIn("ElGamal", text)
-        self.assertIn("Kelompok 4", text)
+        self.assertIn("Kelompok 11", text)
 
     def test_arena_state(self):
         status, data = self.json_request("GET", "/api/arena/state")

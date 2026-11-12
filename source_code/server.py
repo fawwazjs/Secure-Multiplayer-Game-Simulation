@@ -1308,7 +1308,7 @@ def main() -> None:
     server = ThreadingHTTPServer((args.host, args.port), ApiHandler)
     print("=" * 66)
     print("  Secure Multiplayer Game Simulator")
-    print("  Kriptografi (C) - Kelompok 4")
+    print("  Kriptografi (C) - Kelompok 11")
     print(f"  Server berjalan di http://localhost:{args.port}")
     print("  Tekan Ctrl+C untuk berhenti.")
     print("=" * 66)

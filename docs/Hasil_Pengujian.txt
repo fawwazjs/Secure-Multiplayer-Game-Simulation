@@ -1,5 +1,5 @@
 HASIL PENGUJIAN - SECURE MULTIPLAYER GAME SIMULATOR
-Kelompok 4 - Kriptografi (C)
+Kelompok 11 - Kriptografi (C)
 Tanggal: 2026-10-27 16:24:01
 
 === 1. UNIT TEST (python -m unittest discover -s tests -v) ===

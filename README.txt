@@ -1,6 +1,6 @@
 SECURE MULTIPLAYER GAME SIMULATOR
 Mata Kuliah: Kriptografi (C)
-Kelompok 4
+Kelompok 11
 
 Anggota:
 1. Ahmad Wildan Fawwaz - 5027241001
@@ -103,9 +103,9 @@ docs/
   diagram-*.png          diagram laporan
   screenshots/           tangkapan layar
 
-Laporan_Kelompok_4.docx  laporan utama (Word)
-Laporan_Kelompok_4.pdf   laporan versi PDF
-Laporan_Kelompok_4.md    laporan versi Markdown
+Laporan_Kelompok_11.docx laporan utama (Word)
+Laporan_Kelompok_11.pdf  laporan versi PDF
+Laporan_Kelompok_11.md   laporan versi Markdown
 requirements.txt         catatan dependensi (standard library)
 requirements-dev.txt     dependensi opsional untuk membangun laporan
 README.md                dokumentasi lengkap

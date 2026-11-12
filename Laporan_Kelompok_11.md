@@ -2,7 +2,7 @@
 Laporan Program: Secure Multiplayer Game Simulator
 Mata Kuliah: Kriptografi (C)
 Dosen Pengampu: Annisaa Sri Indrawanti, S.Kom., M.Kom.
-Kelompok 4
+Kelompok 11
 Nama Anggota Kelompok:
 1. Ahmad Wildan Fawwaz - 5027241001
 2. Dimas Satya Andhika - 5027241032
@@ -407,9 +407,9 @@ Secure-Multiplayer-Game-Simulation/
   README.txt
   requirements.txt
   .gitignore
-  Laporan_Kelompok_4.md
-  Laporan_Kelompok_4.docx
-  Laporan_Kelompok_4.pdf
+  Laporan_Kelompok_11.md
+  Laporan_Kelompok_11.docx
+  Laporan_Kelompok_11.pdf
 ```
 
 ## 4.2 Modul mathutil.py
@@ -930,7 +930,7 @@ python reference_demo.py
 | T-14 | Klaim damage 999 | ciphertext Serang | Damage tetap 25 | 25, klaim diabaikan | Lulus |
 | T-15 | Ciphertext rusak | c1=0 | HTTP 400, HP tidak berubah | 400, HP 100 | Lulus |
 | T-16 | Endpoint arena | GET state, POST encrypt/submit/reset | JSON valid dan state berubah | Sesuai | Lulus |
-| T-17 | Halaman utama | GET / | Memuat Arena, DH, ElGamal, Kelompok 4 | Semua ada | Lulus |
+| T-17 | Halaman utama | GET / | Memuat Arena, DH, ElGamal, Kelompok 11 | Semua ada | Lulus |
 | T-18 | UI end-to-end | Klik Serang, Skill, Bertahan | HP berubah dan log bertambah | 75/90, 45/84, 89/100 | Lulus |
 | T-19 | UI klaim damage | Klik Uji klaim 999 | HP 75, damage 25 | Sesuai | Lulus |
 | T-20 | UI ciphertext rusak | Klik Uji ciphertext rusak | Ditolak, HP tetap | Sesuai | Lulus |
@@ -1054,9 +1054,9 @@ Dari sisi keamanan, program menunjukkan bahwa kerahasiaan saja tidak cukup. ElGa
 | README.md / README.txt | Cara menjalankan program |
 | requirements.txt | Catatan dependensi (standard library) |
 | .gitignore | Berkas yang tidak perlu dikirim |
-| Laporan_Kelompok_4.md | Laporan versi Markdown |
-| Laporan_Kelompok_4.docx | Laporan versi Word |
-| Laporan_Kelompok_4.pdf | Laporan versi PDF |
+| Laporan_Kelompok_11.md | Laporan versi Markdown |
+| Laporan_Kelompok_11.docx | Laporan versi Word |
+| Laporan_Kelompok_11.pdf | Laporan versi PDF |
 
 ## A.2 Cara Menjalankan
 

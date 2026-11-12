@@ -1,4 +1,4 @@
-# Secure Multiplayer Game Simulator - Kelompok 4
+# Secure Multiplayer Game Simulator - Kelompok 11
 # Runtime dan pengujian memakai Python standard library.
 # Tidak ada dependensi pihak ketiga yang diperlukan untuk menjalankan
 # aplikasi utama atau menjalankan unittest.
